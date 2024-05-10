@@ -11,14 +11,15 @@ import java.util.Scanner;
 public class MenuApp {
 	
 	static Scanner s = new Scanner(System.in);
+	static int teamSize = 0;
 	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		/*
 		 * This App will allow the user to:
-		 * *Add a team member
-		 * *View a team member
+		 * *Add a team member at specific position
+		 * *View a team member at specific position
 		 * *View all team members
 		 * *Delete a team member by position
 		 * *Delete all team members
@@ -71,6 +72,7 @@ public class MenuApp {
 		System.out.println("(4.) Delete a team member by position");
 		System.out.println("(5.) Delete all team members");
 		System.out.println("(-1.) Exit");
+		System.out.print(":");
 		
 	}
 	
@@ -83,13 +85,28 @@ public class MenuApp {
 	
 	public static void addMember(String[] t) {
 		int size = t.length;
+		System.out.print("Which place would you like to add the team member? 1-" + size +":");
+		int teamNumber = s.nextInt();
+		
+		if(teamNumber > 0 && teamNumber < 6) {
+			System.out.print("Enter team member's name:");
+			String memberName = s.next();
+			t[teamNumber-1] = memberName;
+			teamSize++;
+			System.out.println(memberName + " added at position " + teamNumber);
+		}
+		else {
+			System.out.println("******Invalid selection******");
+		}
+		
 		
 	}
 	
 	public static void viewMember(String[] t) {
 		int size = t.length;
-		System.out.println("Which team member would you like to see? 1-" +size+":");
+		System.out.print("Which team member would you like to see? 1-" +size+":");
 		int teamNumber = s.nextInt();
+		
 		if(teamNumber > 0 && teamNumber < 6) {
 			System.out.println(t[teamNumber-1]);
 		}
@@ -101,6 +118,20 @@ public class MenuApp {
 	}
 	
 	public static void removeMember(String[] t) {
+		int size = t.length;
+		System.out.print("Which place would you like to remove a team member? 1-" + size +":");
+		int teamNumber = s.nextInt();
+		
+		if(teamNumber > 0 && teamNumber < 6) {
+			String memberName = t[teamNumber-1];
+			t[teamNumber-1] = "<CLEAR>";
+			teamSize--;
+			System.out.println(memberName + " removed from position " + teamNumber);
+		}
+		else {
+			System.out.println("******Invalid selection******");
+		}
+		
 		
 	}
 	
@@ -108,8 +139,9 @@ public class MenuApp {
 		int size = t.length;
 		
 		for(int i=0; i<size; i++) {
-			t[i] = "";
+			t[i] = "<CLEAR>";
 		}
+		teamSize = 0;
 	}
 
 }
