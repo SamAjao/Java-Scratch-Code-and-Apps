@@ -88,7 +88,7 @@ public class MenuApp {
 		System.out.print("Which place would you like to add the team member? 1-" + size +":");
 		int teamNumber = s.nextInt();
 		
-		if(teamNumber > 0 && teamNumber < 6) {
+		if(teamNumber > 0 && teamNumber <= size) {
 			System.out.print("Enter team member's name:");
 			String memberName = s.next();
 			t[teamNumber-1] = memberName;
@@ -107,7 +107,7 @@ public class MenuApp {
 		System.out.print("Which team member would you like to see? 1-" +size+":");
 		int teamNumber = s.nextInt();
 		
-		if(teamNumber > 0 && teamNumber < 6) {
+		if(teamNumber > 0 && teamNumber <= size) {
 			System.out.println(t[teamNumber-1]);
 		}
 		else {
@@ -122,7 +122,7 @@ public class MenuApp {
 		System.out.print("Which place would you like to remove a team member? 1-" + size +":");
 		int teamNumber = s.nextInt();
 		
-		if(teamNumber > 0 && teamNumber < 6) {
+		if(teamNumber > 0 && teamNumber <= size) {
 			String memberName = t[teamNumber-1];
 			t[teamNumber-1] = "<CLEAR>";
 			teamSize--;
