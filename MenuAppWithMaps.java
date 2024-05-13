@@ -26,7 +26,7 @@ public class MenuAppWithMaps {
 			
 			switch(choice) {
 			case(1):
-				phonebook = addMember(phonebook);
+				addMember(phonebook);
 				break;
 			case(2):
 				removeMember(phonebook);
@@ -62,47 +62,58 @@ public class MenuAppWithMaps {
 	}
 	
 	
-	public static Map<String,String> addMember(Map<String,String> contactMap) {
+	public static void addMember(Map<String,String> contactMap) {
 		
-		Map<String,String> cpyMap = new HashMap<String,String>(contactMap);
+		//Map<String,String> cpyMap = new HashMap<String,String>(contactMap);
 		StringBuilder fName = new StringBuilder();
 		StringBuilder lName = new StringBuilder();
 		StringBuilder name = new StringBuilder();
 		StringBuilder email = new StringBuilder();
 		
 		
-		System.out.print("Contact Email: ");
+		System.out.print("Enter Contact Email: ");
 		email.append(scanner.next().toString());
 		
-		System.out.print("Contact First Name: ");
+		System.out.print("Enter Contact First Name: ");
 		fName.append(scanner.next().toString());
 		
-		System.out.print("Contact Last Name: ");
+		System.out.print("Enter Contact Last Name: ");
 		lName.append(scanner.next().toString());
 		
 		name.append(fName.toString() + " " + lName.toString());
 		
 		
-		
-		if(cpyMap.containsKey(email.toString())) {
+		if(contactMap.containsKey(email.toString())) {
 			System.out.println("That Email already exists.");
 		}
 		else {
-			cpyMap.put(email.toString(), name.toString());
-			System.out.println(cpyMap);
-			contactMap = cpyMap;
-			System.out.println(contactMap);
+			contactMap.put(email.toString(), name.toString());
 		}
 		
-		return cpyMap;
+		//return cpyMap;
 		
 		
 	}
 	
 	public static void removeMember(Map<String,String> contactMap) {
-		Map<String,String> cpyMap = new HashMap<String,String>(contactMap);
+		//Map<String,String> cpyMap = new HashMap<String,String>(contactMap);
 		StringBuilder name = new StringBuilder();
 		StringBuilder email = new StringBuilder();
+		
+		System.out.print("Enter Contact Email of Contact to be deleted: ");
+		email.append(scanner.next().toString());
+		
+		name.append(contactMap.get(email.toString()));
+		
+		if(contactMap.containsKey(email.toString())) {
+			contactMap.remove(email.toString());
+			System.out.println(name+ " has been removed.");
+		}
+		else {
+			System.out.println(email + "associated with " + name + " not found" );
+		}
+		
+		//return cpyMap;
 	}
 	
 	
@@ -111,14 +122,11 @@ public class MenuAppWithMaps {
 		Map<String,String> cpyMap = new HashMap<String,String>(contactMap);
 		int i =0;
 		
-		System.out.println(cpyMap);
-		
-		/*for(Map.Entry<String, String> mp : cpyMap.entrySet()) {	
-			System.out.println(i+1 + ": " + mp.getValue());
+		for(Map.Entry<String, String> mp : cpyMap.entrySet()) {	
+			System.out.println(i+1 + "- Name: " + mp.getValue() + "- Email: " + mp.getKey());
 			i++;
 		}
-		*/
-		
+			
 		
 	}
 	
